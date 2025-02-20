@@ -21,7 +21,7 @@ public class test01 {
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
         // 4.获取bean
-        UserService userService = (UserService) beanFactory.getBean("userService", "小傅哥");
+        UserService userService = (UserService) beanFactory.getBean("userService", "ly");
         userService.queryUserInfo();
     }
 
@@ -35,7 +35,7 @@ public class test01 {
                 return super.hashCode();
             }
         });
-        Object obj = enhancer.create(new Class[]{String.class}, new Object[]{"小傅哥"});
+        Object obj = enhancer.create(new Class[]{String.class}, new Object[]{"ly"});
         System.out.println(obj);
     }
 
@@ -49,7 +49,7 @@ public class test01 {
     public void test_constructor() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<UserService> userServiceClass = UserService.class;
         Constructor<UserService> declaredConstructor = userServiceClass.getDeclaredConstructor(String.class);
-        UserService userService = declaredConstructor.newInstance("小傅哥");
+        UserService userService = declaredConstructor.newInstance("ly");
         System.out.println(userService);
     }
 
@@ -59,7 +59,7 @@ public class test01 {
         Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
         Constructor<?> constructor = declaredConstructors[0];
         Constructor<UserService> declaredConstructor = beanClass.getDeclaredConstructor(constructor.getParameterTypes());
-        UserService userService = declaredConstructor.newInstance("小傅哥");
+        UserService userService = declaredConstructor.newInstance("ly");
         System.out.println(userService);
     }
 }

@@ -64,12 +64,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         try {
             // 获取属性集合 从 BeanDefinition 中提取所有属性配置
             PropertyValues propertyValues = beanDefinition.getPropertyValues();
+            // 循环进行属性填充操作
             for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
-
                 String name = propertyValue.getName();
                 Object value = propertyValue.getValue();
 
-                // 如果value是BeanReference类型，说明该属性引用了另一个Bean,若被引用的 Bean 未初始化，会触发其创建和属性注入流程
+                // 如果value是BeanReference类型，说明该属性引用了另一个Bean,若被引用的 Bean 未初始化，会触发其创建和属性注入流程,当把依赖的 Bean 对象创建完成后，会递归回现在属性填充中
                 if (value instanceof BeanReference) {
                     // A 依赖 B，获取 B 的实例化,
                     BeanReference beanReference = (BeanReference) value;

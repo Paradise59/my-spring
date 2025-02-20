@@ -3,6 +3,9 @@ package spring.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 传递类中属性信息的类，因为属性可能会有很多，所以还需要定义一个集合包装下
+ */
 public class PropertyValues {
     private final List<PropertyValue> propertyValueList = new ArrayList<>();
 

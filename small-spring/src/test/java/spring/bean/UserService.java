@@ -1,20 +1,32 @@
 package spring.bean;
 
 public class UserService {
-    private String name;
+    private String uId;
 
-    public UserService(String name) {
-        this.name = name;
+    private UserDao userDao;
+
+    public UserService(String uId, UserDao userDao) {
+        this.uId = uId;
+        this.userDao = userDao;
     }
 
     public void queryUserInfo() {
-        System.out.println("查询用户信息：" + name);
+        System.out.println("查询用户信息：" + userDao.queryUserName(uId));
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-        sb.append("").append(name);
-        return sb.toString();
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
+
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }
