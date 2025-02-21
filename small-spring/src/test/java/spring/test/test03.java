@@ -10,7 +10,7 @@ import spring.beans.factory.config.BeanReference;
 import spring.beans.factory.support.DefaultListableBeanFactory;
 
 /**
- * 先把 userDao 注入到 Bean 容器中，然后再把 userService 注入到 Bean 容器中
+ * 先把 userDao 注入到容器中，然后再把 userService 注入到容器中
  */
 public class test03 {
 
@@ -19,7 +19,7 @@ public class test03 {
         // 1.初始化 BeanFactory
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        // 2. UserDao 注册
+        // 2. UserDao 注册到容器中
         beanFactory.registerBeanDefinition("userDao", new BeanDefinition(UserDao.class));
 
         // 3. UserService 设置属性[uId、userDao]
