@@ -4,6 +4,11 @@ package spring.beans.factory.support;
 import spring.beans.factory.BeanFactory;
 import spring.beans.BeansException;
 import spring.beans.factory.config.BeanDefinition;
+import spring.beans.factory.config.BeanPostProcessor;
+import spring.beans.factory.config.ConfigurableBeanFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 1. 继承了 DefaultSingletonBeanRegistry，也就具备了使用单例注册类方法的能力
@@ -13,7 +18,9 @@ import spring.beans.factory.config.BeanDefinition;
  *    2.3 getBeanDefinition 和 createBean【由实现此抽象类的其他类实现】
  * BeanDefinition 注册表接口
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 
     @Override
     public Object getBean(String name) throws BeansException {
@@ -49,6 +56,19 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
      */
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException;
 
+    @Override
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor){
+        this.beanPostProcessors.remove(beanPostProcessor);
+        this.beanPostProcessors.add(beanPostProcessor);
+    }
+
+    /**
+     * Return the list of BeanPostProcessors that will get applied
+     * to beans created with this factory.
+     */
+    public List<BeanPostProcessor> getBeanPostProcessors() {
+        return this.beanPostProcessors;
+    }
 
 }
 

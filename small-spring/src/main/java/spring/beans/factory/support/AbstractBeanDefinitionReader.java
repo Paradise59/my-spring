@@ -1,5 +1,6 @@
 package spring.beans.factory.support;
 
+import spring.beans.BeansException;
 import spring.core.io.DefaultResourceLoader;
 import spring.core.io.ResourceLoader;
 
@@ -30,5 +31,6 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
     public ResourceLoader getResourceLoader() {
         return resourceLoader;
     }
+
 
 }
